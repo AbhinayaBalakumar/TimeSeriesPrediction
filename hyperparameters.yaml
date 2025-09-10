@@ -1,0 +1,47 @@
+# Hyperparameter configuration for time series models
+
+lstm:
+  architecture:
+    units: [50, 100, 150, 200]
+    layers: [1, 2, 3]
+    dropout: [0.1, 0.2, 0.3, 0.4]
+    
+  training:
+    learning_rate: [0.001, 0.01, 0.1]
+    batch_size: [16, 32, 64, 128]
+    epochs: 100
+    patience: 10
+    
+  optimization:
+    optimizer: ['adam', 'rmsprop', 'sgd']
+    loss: ['mse', 'mae', 'huber']
+
+prophet:
+  seasonality:
+    changepoint_prior_scale: [0.001, 0.01, 0.1, 0.5]
+    seasonality_prior_scale: [0.01, 0.1, 1.0, 10.0]
+    holidays_prior_scale: [0.01, 0.1, 1.0, 10.0]
+    seasonality_mode: ['additive', 'multiplicative']
+    
+  components:
+    daily_seasonality: [true, false]
+    weekly_seasonality: [true, false]
+    yearly_seasonality: [true, false]
+    
+  growth:
+    growth: ['linear', 'logistic']
+    n_changepoints: [25, 50, 100]
+
+feature_engineering:
+  lag_features:
+    lags: [1, 2, 3, 7, 14, 30]
+    
+  rolling_features:
+    windows: [7, 14, 30, 60]
+    statistics: ['mean', 'std', 'min', 'max', 'median']
+    
+  technical_indicators:
+    sma_periods: [10, 20, 50, 100]
+    ema_periods: [12, 26]
+    rsi_period: 14
+    bollinger_period: 20
